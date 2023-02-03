@@ -9,3 +9,5 @@ C:\Users\kapowell\source\repos\InventoryManagementSystem\InventoryManagementSyst
 C:\Users\kapowell\source\repos\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\InventoryManagementSystem.exe
 C:\Users\kapowell\source\repos\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\InventoryManagementSystem.pdb
 C:\Users\kapowell\source\repos\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\InventoryManagementSystem.MainScreen.resources
+C:\Users\kapowell\source\repos\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\InventoryManagementSystem.PartScreen.resources
+C:\Users\kapowell\source\repos\InventoryManagementSystem\InventoryManagementSystem\obj\Debug\InventoryManagementSystem.ProductScreen.resources
