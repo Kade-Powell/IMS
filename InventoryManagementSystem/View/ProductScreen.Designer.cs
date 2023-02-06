@@ -270,7 +270,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 25);
+            this.label1.Size = new System.Drawing.Size(101, 20);
             this.label1.TabIndex = 41;
             this.label1.Text = "Add Product";
             // 
@@ -426,7 +426,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.candidatePartsGroup);
             this.Name = "ProductScreen";
-            this.Text = "Form1";
+            this.Text = "Product";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.candidatePartsGroup.ResumeLayout(false);
             this.associatedPartsGroup.ResumeLayout(false);

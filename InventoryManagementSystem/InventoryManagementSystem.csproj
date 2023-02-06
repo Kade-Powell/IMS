@@ -46,33 +46,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductScreen.cs">
+    <Compile Include="Model\Outsourced.cs" />
+    <Compile Include="Model\Inhouse.cs" />
+    <Compile Include="Model\Part.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Inventory.cs" />
+    <Compile Include="View\ProductScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductScreen.Designer.cs">
+    <Compile Include="View\ProductScreen.Designer.cs">
       <DependentUpon>ProductScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartScreen.cs">
+    <Compile Include="View\PartScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartScreen.Designer.cs">
+    <Compile Include="View\PartScreen.Designer.cs">
       <DependentUpon>PartScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainScreen.cs">
+    <Compile Include="View\MainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainScreen.Designer.cs">
+    <Compile Include="View\MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="PartScreen.resx">
+    <EmbeddedResource Include="View\PartScreen.resx">
       <DependentUpon>PartScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainScreen.resx">
+    <EmbeddedResource Include="View\MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductScreen.resx">
+    <EmbeddedResource Include="View\ProductScreen.resx">
       <DependentUpon>ProductScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -84,6 +89,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\InventoryManagementSystem.Model.Inventory.datasource" />
+    <None Include="Properties\DataSources\MainScreen.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,5 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
