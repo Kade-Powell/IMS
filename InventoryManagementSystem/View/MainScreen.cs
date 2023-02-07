@@ -37,7 +37,7 @@ namespace InventoryManagementSystem
             Outsourced osPart = new Outsourced
             {
                 CompanyName = "Some other company Name",
-                PartId = 1,
+                PartId = 2,
                 Name = "brake lines",
                 Price = 5.99m,
                 InStock = 2,
@@ -81,7 +81,7 @@ namespace InventoryManagementSystem
 
         private void addPartButton_Click(object sender, EventArgs e)
         {
-            PartScreen partScreen = new PartScreen();
+            PartScreen partScreen = new PartScreen(modifyMode: false, mainScreen: this );
             partScreen.ShowDialog();
         }
 
@@ -93,14 +93,113 @@ namespace InventoryManagementSystem
 
         private void searchPartsButton_Click(object sender, EventArgs e)
         {
-            this.searchPartsText.Text = "event fired";
+           string searchText = searchPartsText.Text;
+
+            foreach(DataGridViewRow row in partsGridView.Rows)
+            {
+                if (row.Cells["name"].Value.ToString().Contains(searchText))
+                {
+                    //select row found
+                    partsGridView.CurrentCell = partsGridView[0, row.Index];
+                    return;
+                }
+               
+            }
+            //no match
+            MessageBox.Show("No Part Name Includes: " + searchText);
         }
 
         private void searchProductsButton_Click(object sender, EventArgs e)
         {
-            this.searchProductsText.Text = "event fired";
+            string searchText = searchProductsText.Text;
+
+            foreach (DataGridViewRow row in productsGridView.Rows)
+            {
+                if (row.Cells["name"].Value.ToString().Contains(searchText))
+                {
+                    //select row found
+                    productsGridView.CurrentCell = productsGridView[0, row.Index];
+                    return;
+                }
+
+            }
+            //no match
+            MessageBox.Show("No Product Name Includes: " + searchText);
         }
 
-       
+        private void deletePartButton_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(partsGridView.CurrentRow.Cells["PartId"].Value.ToString(), out int partId))
+            {
+                MainInventory.DeletePart(partId);
+                if (partsGridView.CurrentRow != null)
+                {
+                    partsGridView.CurrentRow.Selected = true;
+                }
+            }
+        }
+
+        private void deleteProductButton_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(productsGridView.CurrentRow.Cells["ProductId"].Value.ToString(), out int productId))
+            {
+                MainInventory.RemoveProduct(productId);
+                if(productsGridView.CurrentRow != null)
+                {
+                    productsGridView.CurrentRow.Selected = true;
+                }
+                
+            }
+        }
+
+        private void modifyPartButton_Click(object sender, EventArgs e)
+        {
+            dynamic currentPart = MainInventory.LookupPart(Convert.ToInt32(partsGridView.CurrentRow.Cells["PartId"].Value));
+            PartScreen partScreen;
+ 
+           if (currentPart.GetType().ToString() == "InventoryManagementSystem.Model.Inhouse")
+            {
+                partScreen = new PartScreen(
+                    modifyMode: true,
+                    mainScreen: this,
+
+                    partId: currentPart.PartId,
+                    name: currentPart.Name,
+                    price: currentPart.Price,
+                    inStock: currentPart.InStock,
+                    min: currentPart.Min,
+                    max: currentPart.Max,
+                    machineId: currentPart.MachineId
+                    );
+            }else if (currentPart.GetType().ToString() == "InventoryManagementSystem.Model.Outsourced")
+            {
+               partScreen = new PartScreen(
+                   modifyMode: true,
+                   mainScreen: this,
+
+                   partId: currentPart.PartId,
+                   name: currentPart.Name,
+                   price: currentPart.Price,
+                   inStock: currentPart.InStock,
+                   min: currentPart.Min,
+                   max: currentPart.Max,
+                   companyName: currentPart.CompanyName
+                   );
+            }
+            else
+            {
+                MessageBox.Show("unable to determine part type");
+                throw new Exception("unable to determine part type");
+            }
+
+            
+            partScreen.ShowDialog();
+        }
+
+        private void modifyProductButton_Click(object sender, EventArgs e)
+        {
+            ProductScreen productScreen = new ProductScreen();
+            productScreen.ShowDialog();
+        }
     }
 }
