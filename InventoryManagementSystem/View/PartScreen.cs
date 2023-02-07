@@ -106,9 +106,7 @@ namespace InventoryManagementSystem
 
             //name validation
             if (!(this.name.Text.Length > 0)) { return (false, "part name must be set"); }
-            //in stock validation
-            if (!(this.inStock.Text.Length > 0)) { return (false, "Inventory must be greater than or equal to 0"); }
-            if (!(Convert.ToInt32(this.inStock.Text) >= 0)) { return (false, "Inventory must be greater than or equal to 0"); }
+           
             //price validation
             if (!(this.price.Text.Length > 0)) { return (false, "price must be specified"); }
             if (!(Convert.ToDecimal(this.price.Text) > 0)) { return (false, "price must be a decimal number greater than 0.00"); }
@@ -119,6 +117,18 @@ namespace InventoryManagementSystem
             if (!(this.min.Text.Length > 0)) { return (false, "Min must be set"); }
             if (!(Convert.ToInt32(this.min.Text) >= 0)) { return (false, "min must be greater than or equal to 0"); }
             if (!(Convert.ToInt32(this.max.Text) > Convert.ToInt32(this.min.Text))) { return (false, "max must be greater than min"); }
+            //in stock validation
+            if (!(this.inStock.Text.Length > 0)) { return (false, "Inventory must be set"); }
+            if (!
+                    (
+                        Convert.ToInt32(this.inStock.Text) > Convert.ToInt32(this.min.Text)
+                    ) 
+                    && 
+                    (
+                        Convert.ToInt32(this.inStock.Text) < Convert.ToInt32(this.max.Text)
+                    ) 
+                ) { return (false, "Inventory must be greater than Min and less than Max"); }
+            
             if (outsourcedButton.Checked)
             {
                 //company name validation
